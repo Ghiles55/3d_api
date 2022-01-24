@@ -24,7 +24,7 @@ let getOrders = (req, resp) => {
 
         orders.find({ date: { $gte: start, $lte: end } }, (err, result) => {
           if (err != null || result?.length == 0) {
-            resp.status(300).send("No orders found in this time span");
+            resp.status(301).send("No orders found in this time span");
           } else {
             resp.status(200).json({ orders: result });
           }
@@ -36,7 +36,7 @@ let getOrders = (req, resp) => {
           { date: { $gte: startDate, $lte: endDate } },
           (err, result) => {
             if (err != null || result?.length == 0) {
-              resp.status(300).send("No orders found in this time span");
+              resp.status(301).send("No orders found in this time span");
             } else {
               resp.status(200).json({ orders: result });
             }
