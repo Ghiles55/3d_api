@@ -10,6 +10,7 @@ var order= require('./controllers/order')
 var getUserCount= require("./controllers/getUserCount")
 var adminLogin= require('./controllers/adminLogin')
 var getOrders = require('./controllers/getOrders')
+var getUserList= require('./controllers/getUsersList')
 var app = express();
 app.use(bodyParser());
 app.use(cors());
@@ -21,6 +22,7 @@ app.post('/order',order)
 app.get("/userCount", getUserCount)
 app.get("/adminlogin", adminLogin)
 app.get('/getOrders', getOrders)
+app.get('/getuserlist', getUserList)
 
 mongoose
 .connect(
