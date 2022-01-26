@@ -3,12 +3,12 @@ let jwt = require("jsonwebtoken");
 let orders = require("../models/orders");
 
 let getOrders = (req, resp) => {
-  console.log("AAAAAAAAAAA")
+  
   let token = req.header("Authtoken");
-  console.log(token)
+ ;
   let orderId = req.header("ID");
   if (!token || token.length == 0) {
-    console.log(token)
+    console.log(token);
     resp.status(300).send("Auth token not sent");
   } else {
     try {
@@ -21,7 +21,7 @@ let getOrders = (req, resp) => {
       }
 
       if (day) {
-        console.log("IN DAY BLOCK")
+        
         const start = new Date(day);
         start.setHours(1, 0, 0, 0);
         const end = new Date(day);
@@ -38,7 +38,7 @@ let getOrders = (req, resp) => {
             }
           });
       } else if (startDate instanceof Date && endDate instanceof Date) {
-        console.log("IN else if BLOCK")
+        
         startDate.setHours(1, 0, 0, 0);
         endDate.setHours(24, 59, 59, 999);
         orders
@@ -51,21 +51,24 @@ let getOrders = (req, resp) => {
               resp.status(200).json({ orders: result });
             }
           });
-      } 
-      // else if (orderId!=null && orderId.length != 0 && orderId!= undefined) {
-      //   console.log("IN ID BLOCK")
-      //   orders
-      //     .find({ _id: orderId })
-      //     .populate("client", "firstName lastName phoneNumber email")
-      //     .exec((err, result) => {
-      //       if (err != null || result?.length == 0) {
-      //         resp.status(301).send("No orders found with this ID");
-      //       } else {
-      //         resp.status(200).json({ orders: result });
-      //       }
-      //     });
-       else {
-        console.log("IN ELSE BLOCK")
+      } else if (
+        orderId != null &&
+        orderId.length != 0 &&
+        orderId != undefined
+      ) {
+        
+        orders
+          .find({ _id: orderId })
+          .populate("client", "firstName lastName phoneNumber email")
+          .exec((err, result) => {
+            if (err != null || result?.length == 0) {
+              resp.status(301).send("No orders found with this ID");
+            } else {
+              resp.status(200).json({ orders: result });
+            }
+          });
+      } else {
+       
         orders
           .find({})
           .populate("client", "firstName lastName phoneNumber email")

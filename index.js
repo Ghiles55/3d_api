@@ -11,6 +11,7 @@ var getUserCount= require("./controllers/getUserCount")
 var adminLogin= require('./controllers/adminLogin')
 var getOrders = require('./controllers/getOrders')
 var getUserList= require('./controllers/getUsersList')
+var getOrderInfo= require('./controllers/getOrderInfo')
 var app = express();
 app.use(bodyParser());
 app.use(cors());
@@ -23,6 +24,7 @@ app.get("/userCount", getUserCount)
 app.get("/adminlogin", adminLogin)
 app.get('/getOrders', getOrders)
 app.get('/getuserlist', getUserList)
+app.get('/orderInfo', getOrderInfo)
 
 mongoose
 .connect(
@@ -33,4 +35,4 @@ mongoose
 })
 .catch((err) => {});
 
-app.listen(780);
+app.listen(830);
