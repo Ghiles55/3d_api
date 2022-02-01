@@ -12,6 +12,22 @@ var adminLogin= require('./controllers/adminLogin')
 var getOrders = require('./controllers/getOrders')
 var getUserList= require('./controllers/getUsersList')
 var getOrderInfo= require('./controllers/getOrderInfo')
+var multer= require('multer')
+var path= require('path')
+
+const storageEngine= multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null, "./uploads")
+    },
+    filename:(req,file,cb)=>{
+        console.log(req.header("artId"))
+        let artId= req.header('artId')
+        cb(null,artId +'-' + file.fieldname + path.extname(file.originalname) )
+    }
+})
+
+const upload= multer({ storage: storageEngine})
+
 var app = express();
 app.use(bodyParser());
 app.use(cors());
@@ -25,6 +41,16 @@ app.get("/adminlogin", adminLogin)
 app.get('/getOrders', getOrders)
 app.get('/getuserlist', getUserList)
 app.get('/orderInfo', getOrderInfo)
+app.post('/uploadPrint', upload.fields([{
+    name:'frontPrint',maxCount:1
+},{
+    name:'backPrint'
+}
+]),(req,res)=>{
+    
+    
+    res.send('files uploades sucessfully')
+})
 
 mongoose
 .connect(
@@ -35,4 +61,4 @@ mongoose
 })
 .catch((err) => {});
 
-app.listen(830);
+app.listen(840);
