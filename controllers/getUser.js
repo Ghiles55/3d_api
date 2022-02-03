@@ -18,7 +18,8 @@ let getUser=(req,resp)=>{
                         lastName:res.lastName,
                         address:res.address,
                         phoneNumber:res.phoneNumber,
-                        region:res.region
+                        region:res.region,
+                        email:res.email
                     }
                     resp.status(200).json(user)
                 }

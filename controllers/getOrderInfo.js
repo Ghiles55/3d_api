@@ -22,6 +22,13 @@ let getOrderInfo = (req, resp) => {
                 console.log("IN ERROR", result, err)
               resp.status(301).send("No orders found with this ID");
             } else {
+              let newResult= {...result[0]}
+              let test= result[0].products.map((el)=>{
+                let artId= el.id
+                el.frontPrint.image= `\\uploads\\${artId}-frontPrint.png`
+                el.backPrint.image= `\\uploads\\${artId}-backPrint.png`
+              })
+              console.log(newResult, test)
               resp.status(200).json({ orders: result });
             }
           });
