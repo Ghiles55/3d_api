@@ -26,8 +26,9 @@ let signup = async(req,res)=>{
                     password:password,
                     email:email,
                     phoneNumber:phoneNumber,
-                   address:address,
-                   region:region
+                    address:address,
+                    region:region,
+                    registrationDate: Date.now()
                 });
                 console.log(doc)
                 await doc.save();

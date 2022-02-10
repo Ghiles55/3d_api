@@ -7,7 +7,8 @@ let users=mongoose.model('user',{
     address:String,
     region:String,
     phoneNumber:Number,
-    password:String
+    password:String,
+    registrationDate:Date
 })
 
 module.exports= users

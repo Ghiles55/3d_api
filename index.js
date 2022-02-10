@@ -12,8 +12,11 @@ var adminLogin= require('./controllers/adminLogin')
 var getOrders = require('./controllers/getOrders')
 var getUserList= require('./controllers/getUsersList')
 var getOrderInfo= require('./controllers/getOrderInfo')
+var getGraphData= require('./controllers/getGraphData')
+var deleteItems= require("./controllers/deleteItems")
 var multer= require('multer')
-var path= require('path')
+var path= require('path');
+
 
 const storageEngine= multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -39,8 +42,10 @@ app.post('/login',Login)
 app.get("/getuser",getUser)
 app.post('/order',order)
 app.get("/userCount", getUserCount)
-app.get("/adminlogin", adminLogin)
+app.post("/adminlogin", adminLogin)
 app.get('/getOrders', getOrders)
+app.get("/getGraphData", getGraphData)
+app.delete('/deleteItems', deleteItems)
 app.get('/getuserlist', getUserList)
 app.get('/orderInfo', getOrderInfo)
 app.post('/uploadPrint', upload.fields([{

@@ -26,6 +26,7 @@ let getUser=(req,resp)=>{
             })
         }catch(e){
             console.log(e)
+            resp.status(300).send('Auth token not valid')
         }
     }
 }
