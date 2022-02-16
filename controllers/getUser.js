@@ -23,6 +23,7 @@ let getUser=(req,resp)=>{
                     }
                     resp.status(200).json(user)
                 }
+                console.log("USER")
             })
         }catch(e){
             console.log(e)

@@ -23,6 +23,7 @@ let getUserList=(req,resp)=>{
                 })
                 resp.status(200).json(newResult)
             })
+            console.log("USERSLIST")
         }catch(e){
             console.log(e)
         }

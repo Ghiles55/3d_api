@@ -15,6 +15,7 @@ let getUserCount = (req, resp) => {
           resp.status(200).json({ userCount: usersCount });
         }
       });
+      console.log("USERCOUNT")
     } catch (e) {
       console.log(e);
       resp.status(300).send("An error occured, try again later");
