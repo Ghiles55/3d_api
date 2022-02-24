@@ -32,7 +32,7 @@ let getOrders = (req, resp) => {
           .exec((err, result) => {
             console.log(err);
             if (err != null || result?.length == 0) {
-              resp.status(301).send("No orders found in this time span");
+              resp.status(301).json({status:'No orders in this time span'});
             } else {
               resp.status(200).json({ orders: result });
             }
@@ -46,7 +46,7 @@ let getOrders = (req, resp) => {
           .populate("client", "firstName lastName phoneNumber email")
           .exec((err, result) => {
             if (err != null || result?.length == 0) {
-              resp.status(301).send("No orders found in this time span");
+              resp.status(301).json({status:'No orders in this time span'});
             } else {
               resp.status(200).json({ orders: result });
             }
