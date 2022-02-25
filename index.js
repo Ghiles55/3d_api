@@ -1,7 +1,6 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");;
-var jwt = require("jsonwebtoken");
 var cors = require("cors");
 var register=require('./controllers/register')
 var Login=require('./controllers/login')
@@ -13,7 +12,10 @@ var getOrders = require('./controllers/getOrders')
 var getUserList= require('./controllers/getUsersList')
 var getOrderInfo= require('./controllers/getOrderInfo')
 var getGraphData= require('./controllers/getGraphData')
+// var getUsersGraph= require('./controllers/getUsersGraphData')
+// var getOrdersGraph= require ('./controllers/getOrdersGraphData')
 var deleteItems= require("./controllers/deleteItems")
+
 var multer= require('multer')
 var path= require('path');
 
@@ -35,7 +37,7 @@ var app = express();
 
 app.use(express.static("uploads"));
 app.use(bodyParser());
-app.use(cors());
+app.use(cors())
 
 app.post('/register',register)
 app.post('/login',Login)
@@ -45,9 +47,14 @@ app.get("/userCount", getUserCount)
 app.post("/adminlogin", adminLogin)
 app.get('/getOrders', getOrders)
 app.get("/getGraphData", getGraphData)
+// app.get('/getUsersGraph', getUsersGraph)
+// app.get('/getOrdersGraph', getOrdersGraph)
 app.delete('/deleteItems', deleteItems)
 app.get('/getuserlist', getUserList)
 app.get('/orderInfo', getOrderInfo)
+app.get('/test', (req, resp)=>{
+    resp.status(200).json({status : "success"})
+})
 app.post('/uploadPrint', upload.fields([{
     name:'frontPrint',maxCount:1
 },{
@@ -66,6 +73,8 @@ mongoose
 .then((db) => {
     console.log("Database connected");
 })
-.catch((err) => {});
+.catch((err) => {
+    console.log(err)
+});
 
 app.listen(920);

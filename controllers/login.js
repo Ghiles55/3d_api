@@ -1,7 +1,7 @@
 let jwt = require("jsonwebtoken");
 let users= require('../models/users')
 
-const Login =async (req,resp)=>{
+const Login = (req,resp)=>{
     let email= req.body.email || ""
     let password = req.body.Password|| ""
     console.log(req.body)

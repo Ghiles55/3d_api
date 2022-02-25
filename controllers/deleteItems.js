@@ -5,7 +5,8 @@ let users = require("../models/users");
 let deleteitems = (req, resp) => {
   let token = req.header("Authtoken");
   let itemType = req.header("type");
-  let itemsId = req.body.IDs;
+  let IdList = req.header('IDs')
+  let itemsId= IdList.split('/')
 console.log(itemsId, req.body)
   if (!token || token.length == 0) {
     console.log(token);
@@ -34,7 +35,10 @@ console.log(itemsId, req.body)
               }
         })
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e)
+      resp.status(300).json({error : e })
+    }
   }
 };
 
