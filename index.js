@@ -12,6 +12,7 @@ var getOrders = require('./controllers/getOrders')
 var getUserList= require('./controllers/getUsersList')
 var getOrderInfo= require('./controllers/getOrderInfo')
 var getGraphData= require('./controllers/getGraphData')
+var graphTest= require('./controllers/graphtest')
 // var getUsersGraph= require('./controllers/getUsersGraphData')
 // var getOrdersGraph= require ('./controllers/getOrdersGraphData')
 var deleteItems= require("./controllers/deleteItems")
@@ -52,9 +53,8 @@ app.get("/getGraphData", getGraphData)
 app.delete('/deleteItems', deleteItems)
 app.get('/getuserlist', getUserList)
 app.get('/orderInfo', getOrderInfo)
-app.get('/test', (req, resp)=>{
-    resp.status(200).json({status : "success"})
-})
+app.get('/test', graphTest)
+
 app.post('/uploadPrint', upload.fields([{
     name:'frontPrint',maxCount:1
 },{
@@ -77,4 +77,4 @@ mongoose
     console.log(err)
 });
 
-app.listen(920);
+app.listen(950);

@@ -3,6 +3,7 @@ let users= require('../models/users')
 
 let getUserList=(req,resp)=>{
     let token= req.header('Authtoken')
+    console.log(token)
     if(!token||token.length==0){
         resp.status(300).send("Auth token not sent")
     }else{
@@ -26,6 +27,7 @@ let getUserList=(req,resp)=>{
             console.log("USERSLIST")
         }catch(e){
             console.log(e)
+            resp.status(300).json({status: "An error occured"})
         }
     }
 }

@@ -4,9 +4,10 @@ let orders = require("../models/orders");
 
 let getOrders = (req, resp) => {
   
-  let token = req.header("Authtoken");
+  let token= req.header('Authtoken')
  ;
   let orderId = req.header("ID");
+  console.log(token)
   if (!token || token.length == 0) {
     console.log(token);
     resp.status(300).send("Auth token not sent");
