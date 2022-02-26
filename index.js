@@ -12,9 +12,7 @@ var getOrders = require('./controllers/getOrders')
 var getUserList= require('./controllers/getUsersList')
 var getOrderInfo= require('./controllers/getOrderInfo')
 var getGraphData= require('./controllers/getGraphData')
-var graphTest= require('./controllers/graphtest')
-// var getUsersGraph= require('./controllers/getUsersGraphData')
-// var getOrdersGraph= require ('./controllers/getOrdersGraphData')
+
 var deleteItems= require("./controllers/deleteItems")
 
 var multer= require('multer')
@@ -48,13 +46,9 @@ app.get("/userCount", getUserCount)
 app.post("/adminlogin", adminLogin)
 app.get('/getOrders', getOrders)
 app.get("/getGraphData", getGraphData)
-// app.get('/getUsersGraph', getUsersGraph)
-// app.get('/getOrdersGraph', getOrdersGraph)
 app.delete('/deleteItems', deleteItems)
 app.get('/getuserlist', getUserList)
 app.get('/orderInfo', getOrderInfo)
-app.get('/test', graphTest)
-
 app.post('/uploadPrint', upload.fields([{
     name:'frontPrint',maxCount:1
 },{
